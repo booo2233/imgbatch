@@ -15,4 +15,5 @@
 Clone this repository:
 ```bash
 git clone https://github.com/yourusername/imgbach.git
-cd imgbach```
+cd imgbach
+
