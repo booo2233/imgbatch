@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Optional
 from .image_conversion import convert
 from .utils.find_files import find_files
+from .utils.tables import files_table
 
 console = Console()
 app = typer.Typer(no_args_is_help=True)
@@ -37,7 +38,7 @@ def main(
 
     try:
         files = find_files(input_format, directory_path, recurse)
-        console.print(files)
+        console.print(files_table(files, input_format, output_format))
         convert(input_format, output_format, files)
     except FileNotFoundError as e:
         console.print(str(e), style="red")
