@@ -14,7 +14,7 @@ def files_table(files, input_ext, output_ext):
     table.add_column("ID", justify="center", style="cyan", no_wrap=True)
     table.add_column("Name", style="magenta")
     table.add_column("format", justify="right", style="green")
-    table.add_column("formating to", justify="right", style="blue")
+    table.add_column("formated to", justify="right", style="blue")
 
     # Add rows
     for index, file in enumerate(files):
