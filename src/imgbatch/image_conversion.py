@@ -1,25 +1,50 @@
 from PIL import Image
+import zipfile
+from datetime import datetime
 import os
 
 
+now = datetime.now()
+
+
 # Convert one image format to another image format
-def convert(input_ext: str, output_ext: str, file_names: list, delete: bool):
-    if not file_names:
+def convert_file(input_ext: str, output_ext: str, file_name: str, delete: bool):
+    if not file_name:
         raise FileNotFoundError(f"No {input_ext!r} files found")
 
-        # Otherwise do the conversions
+    img = Image.open(file_name)
 
-    img = Image.open(file_names)
-
-    base = file_names.rsplit(input_ext, 1)[0]  # remove only the last occurrence
+    base, _ = os.path.splitext(file_name)
     new_filename = base + output_ext
+
+    # Skip if already exists
+    if os.path.exists(new_filename):
+        return new_filename
 
     img.save(new_filename)
 
+    # Delete original if requested
     if delete:
-        os.remove(file_names)
+        os.remove(file_name)
+
     return new_filename
 
 
+def zip_conversion(zip_name: str, files: list):
+    # name of the new zip file
+    if zip_name is None:
+        zip_name = now.strftime("%H-%M-%S_%d-%m-%Y.zip")
+    if not zip_name.endswith(".zip"):
+        zip_name = zip_name + ".zip"
+
+    # create the zip and add the files
+    with zipfile.ZipFile(zip_name, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+        for f in files:
+            zf.write(f, arcname=os.path.basename(f))
+
+    return zip_name
+
+
 if __name__ == "__main__":
-    convert()
+    zip_conversion()
+    convert_file()
