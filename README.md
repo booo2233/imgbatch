@@ -1,5 +1,5 @@
 # imgbach (Beta)
-
+# ⚠️ only works on Mac,Linux,FreeBSD
 **imgbach** is an experimental image processing project.  
 ⚠️ This is a **beta version** – currently, image conversion and zip archiving features are available.  
 
