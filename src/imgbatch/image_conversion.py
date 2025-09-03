@@ -1,6 +1,5 @@
 from PIL import Image
 import os
-from rich import console
 
 
 # Convert one image format to another image format
