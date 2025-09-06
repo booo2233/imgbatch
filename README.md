@@ -21,5 +21,5 @@
 ## Installation
 Clone this repository:
 ```bash
-git clone https://github.com/yourusername/imgbach.git
+git clone https://github.com/booo2233/imgbach.git
 cd imgbach
