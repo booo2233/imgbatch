@@ -1,4 +1,4 @@
-# imgbach (Beta)
+# imgbach v1.0
 ## 🚀 Platform Support
 
 ![Linux](https://img.shields.io/badge/Linux-Supported-brightgreen?logo=linux)
@@ -26,3 +26,4 @@ cd src
 pip install -r imgbatch/requirements.txt
 
 python -m imgbatch --help
+
