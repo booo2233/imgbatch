@@ -7,7 +7,7 @@
 ![Windows](https://img.shields.io/badge/Windows-Untested-lightgrey?logo=windows)
 
 **imgbach** is an experimental image processing project.  
-⚠️ This is a **beta version** – currently, image conversion and zip archiving features are available.  
+ 
 
 ---
 
