@@ -7,7 +7,7 @@
 ![Windows](https://img.shields.io/badge/Windows-Untested-lightgrey?logo=windows)
 
 **imgbach** is an experimental image processing project.  
-⚠️ This is a **beta version** – currently, image conversion and zip archiving features are available.  
+  
 
 ---
 
@@ -24,4 +24,5 @@ Clone this repository:
 git clone https://github.com/booo2233/imgbach.git
 cd src
 pip install -r imgbatch/requirements.txt
+
 python -m imgbatch --help
