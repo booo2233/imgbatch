@@ -21,7 +21,7 @@
 ## Installation
 Clone this repository:
 ```bash
-git clone https://github.com/booo2233/imgbach.git
+git clone https://github.com/booo2233/imgbatch.git
 cd src
 pip install -r imgbatch/requirements.txt
 
