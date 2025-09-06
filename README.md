@@ -22,4 +22,6 @@
 Clone this repository:
 ```bash
 git clone https://github.com/booo2233/imgbach.git
-cd imgbach
+cd src
+pip install -r imgbatch/requirements.txt
+python -m imgbatch --help
