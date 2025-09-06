@@ -2,7 +2,6 @@ from PIL import Image
 import zipfile
 from datetime import datetime
 import os
-import time
 
 
 now = datetime.now()
@@ -20,7 +19,7 @@ def convert_file(input_ext: str, output_ext: str, file_name: str, delete: bool):
     # Skip if already exists
     if os.path.exists(new_filename):
         return new_filename
-    time.sleep(2)
+
     img.save(new_filename)
 
     # Delete original if requested
