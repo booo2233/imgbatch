@@ -1,0 +1,7 @@
+InquirerPy==0.3.4
+Pillow==11.3.0
+pyfiglet==1.0.4
+rich==14.1.0
+typer==0.17.4
+typing_extensions==4.15.0
+yaspin==3.1.0

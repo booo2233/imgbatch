@@ -1,4 +1,4 @@
-# imgbach (Beta)
+# imgbach v1.0
 ## 🚀 Platform Support
 
 ![Linux](https://img.shields.io/badge/Linux-Supported-brightgreen?logo=linux)
@@ -7,7 +7,7 @@
 ![Windows](https://img.shields.io/badge/Windows-Untested-lightgrey?logo=windows)
 
 **imgbach** is an experimental image processing project.  
- 
+
 
 ---
 
@@ -24,4 +24,6 @@ Clone this repository:
 git clone https://github.com/booo2233/imgbach.git
 cd src
 pip install -r imgbatch/requirements.txt
+
 python -m imgbatch --help
+
