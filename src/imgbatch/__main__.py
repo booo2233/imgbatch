@@ -9,9 +9,12 @@ from .utils.tables import files_table
 import concurrent.futures
 import itertools
 import os
+from yaspin import yaspin
 
 console = Console()
 app = typer.Typer(no_args_is_help=True)
+
+spinner = yaspin()
 
 
 def normalize_path(p: Optional[str]) -> Path:
@@ -19,6 +22,8 @@ def normalize_path(p: Optional[str]) -> Path:
 
 
 def _process_and_convert_files(input_format, output_format, directory, recurse, delete):
+    spinner.start()
+
     files = find_files(input_format, directory, recurse)
     with concurrent.futures.ProcessPoolExecutor(max_workers=os.cpu_count()) as executor:
         results = list(
@@ -30,6 +35,7 @@ def _process_and_convert_files(input_format, output_format, directory, recurse, 
                 itertools.repeat(delete),
             )
         )
+    spinner.stop()
     return results
 
 
