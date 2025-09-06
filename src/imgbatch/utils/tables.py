@@ -18,6 +18,6 @@ def files_table(files, input_ext, output_ext):
 
     # Add rows
     for index, file in enumerate(files):
-        table.add_row(str(index), file, input_ext, output_ext)
+        table.add_row(str(index), file, output_ext, input_ext)
 
     return table
