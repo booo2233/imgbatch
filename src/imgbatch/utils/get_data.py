@@ -1,13 +1,9 @@
 from rich.prompt import IntPrompt
 from rich.console import Console
 from datetime import datetime
-import pyfiglet
+
 
 console = Console()
-
-
-ascii_banner = pyfiglet.figlet_format("Pick Files", font="slant")
-console.print(ascii_banner)
 
 
 def ask_date():
