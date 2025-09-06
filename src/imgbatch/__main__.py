@@ -1,12 +1,12 @@
 import typer
 from typing_extensions import Annotated
 from rich.console import Console
-from rich.prompt import Prompt
 from pathlib import Path
 from typing import Optional
 from .image_conversion import convert_file, zip_conversion
 from .utils.find_files import find_files
-from .utils.tables import files_table, sp_files_table
+from .utils.get_data import ask_date
+from .utils.tables import files_table
 import concurrent.futures
 import itertools
 import os
@@ -144,6 +144,7 @@ def specificity_search(
         False, "--recurse", "-r", help="Also search subdirectories recursively"
     ),
 ):
+    files = None
     console.print(pyfiglet.figlet_format("spsearch", font="slant"))
     directory_path = normalize_path(image_directory)
     choice = inquirer.select(
@@ -166,15 +167,14 @@ def specificity_search(
         ]
 
         result = prompt(questions)
-        console.print(sp_files_table(result["files"]))
-
+        files = result["files"]
     else:
-        pass
+        date = ask_date()
+        files = find_files(input_format, directory_path, recurse, date)
 
     if not directory_path.exists() or not directory_path.is_dir():
         console.print(f"[red]Directory not found:[/red] {directory_path}")
         raise typer.Exit(code=1)
-
     try:
         results = _process_and_convert_files(
             input_format,
@@ -182,7 +182,7 @@ def specificity_search(
             directory_path,
             recurse,
             delete,
-            result["files"],
+            files,
         )
         console.print(files_table(results, output_format, input_format))
     except FileNotFoundError as e:
