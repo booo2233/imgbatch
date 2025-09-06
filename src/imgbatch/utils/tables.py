@@ -21,3 +21,17 @@ def files_table(files, input_ext, output_ext):
         table.add_row(str(index), file, output_ext, input_ext)
 
     return table
+
+
+def sp_files_table(files):
+    table = Table(title="files")
+
+    # Add columns
+    table.add_column("ID", justify="center", style="cyan", no_wrap=True)
+    table.add_column("Name", style="magenta")
+
+    # Add rows
+    for index, file in enumerate(files):
+        table.add_row(str(index), file)
+
+    return table
