@@ -11,11 +11,11 @@
 
 ---
 
-## Features (Beta)
+## Features (v1.0)
 - ✅ Convert images between different formats (e.g., JPG → PNG, PNG → WebP, etc.)
 - ✅ Batch convert and package results into a single **.zip archive**
-- ⚠️ More features will be added in future releases.
-
+- ✅ **Specificity search**: select exactly which files you want to convert
+- 🎉 Project completed! More updates may come, but this is **v1.0** done! 🚀
 ---
 
 ## Installation

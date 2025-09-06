@@ -5,11 +5,14 @@ from pathlib import Path
 from typing import Optional
 from .image_conversion import convert_file, zip_conversion
 from .utils.find_files import find_files
+from .utils.get_data import ask_date
 from .utils.tables import files_table
 import concurrent.futures
 import itertools
 import os
 from yaspin import yaspin
+from InquirerPy import inquirer, prompt
+import pyfiglet
 
 console = Console()
 app = typer.Typer(no_args_is_help=True)
@@ -21,10 +24,20 @@ def normalize_path(p: Optional[str]) -> Path:
     return Path(p).expanduser().resolve(strict=False) if p else Path.cwd()
 
 
-def _process_and_convert_files(input_format, output_format, directory, recurse, delete):
+def _process_and_convert_files(
+    input_format: str,
+    output_format: str,
+    directory: str,
+    recurse: bool,
+    delete: bool,
+    spsearch: list = None,
+):
     spinner.start()
+    if spsearch is None:
+        files = find_files(input_format, directory, recurse)
 
-    files = find_files(input_format, directory, recurse)
+    else:
+        files = spsearch
     with concurrent.futures.ProcessPoolExecutor(max_workers=os.cpu_count()) as executor:
         results = list(
             executor.map(
@@ -108,6 +121,70 @@ def process_images_to_zip(
         console.print(files_table(results, output_format, input_format))
         archive = zip_conversion(file_name, results)
         console.print(f"[green]Created archive:[/green] {archive}")
+    except FileNotFoundError as e:
+        console.print(str(e), style="red")
+        raise typer.Exit(code=1)
+
+
+@app.command("spsearch")
+def specificity_search(
+    input_format: Annotated[
+        str, typer.Option(..., "--input", "-i", help="Input format (e.g., webp)")
+    ],
+    output_format: Annotated[
+        str, typer.Option(..., "--output", "-o", help="Output format (e.g., png)")
+    ],
+    image_directory: Optional[str] = typer.Option(
+        None, "--directory", "-f", help="Folder to look in (default: current directory)"
+    ),
+    delete: Optional[bool] = typer.Option(
+        False, "--delete", "-d", help="delete the image after convertion"
+    ),
+    recurse: bool = typer.Option(
+        False, "--recurse", "-r", help="Also search subdirectories recursively"
+    ),
+):
+    files = None
+    console.print(pyfiglet.figlet_format("spsearch", font="slant"))
+    directory_path = normalize_path(image_directory)
+    choice = inquirer.select(
+        message="Pick search type:",
+        choices=["File Search", "Date Search"],
+        qmark="",
+    ).execute()
+    console.print(f"You picked: [green]{choice}[/green]")
+    if choice == "File Search":
+        files = find_files(input_format, directory_path, recurse)
+        questions = [
+            {
+                "type": "fuzzy",
+                "name": "files",
+                "message": "Select files:",
+                "choices": files,
+                "multiselect": True,
+                "transformer": lambda result: "",  # <- hides "users pick: ..."
+            }
+        ]
+
+        result = prompt(questions)
+        files = result["files"]
+    else:
+        date = ask_date()
+        files = find_files(input_format, directory_path, recurse, date)
+
+    if not directory_path.exists() or not directory_path.is_dir():
+        console.print(f"[red]Directory not found:[/red] {directory_path}")
+        raise typer.Exit(code=1)
+    try:
+        results = _process_and_convert_files(
+            input_format,
+            output_format,
+            directory_path,
+            recurse,
+            delete,
+            files,
+        )
+        console.print(files_table(results, output_format, input_format))
     except FileNotFoundError as e:
         console.print(str(e), style="red")
         raise typer.Exit(code=1)
