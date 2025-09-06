@@ -2,6 +2,7 @@ from PIL import Image
 import zipfile
 from datetime import datetime
 import os
+import time
 
 
 now = datetime.now()
@@ -11,19 +12,19 @@ now = datetime.now()
 def convert_file(input_ext: str, output_ext: str, file_name: str, delete: bool):
     if not file_name:
         raise FileNotFoundError(f"No {input_ext!r} files found")
-
     img = Image.open(file_name)
 
     base, _ = os.path.splitext(file_name)
-    new_filename = base + output_ext
+    new_filename = base + "." + output_ext
 
     # Skip if already exists
     if os.path.exists(new_filename):
         return new_filename
-
+    time.sleep(2)
     img.save(new_filename)
 
     # Delete original if requested
+
     if delete:
         os.remove(file_name)
 
