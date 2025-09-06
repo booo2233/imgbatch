@@ -1,4 +1,5 @@
 Pillow==11.3.0
 rich==14.1.0
-typer==0.16.0
-typing_extensions==4.14.1
+typer==0.17.4
+typing_extensions==4.15.0
+yaspin==3.1.0
