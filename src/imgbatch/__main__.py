@@ -1,21 +1,20 @@
-import typer
-from typing_extensions import Annotated
-from rich.console import Console
-from pathlib import Path
-from typing import Optional
-from .image_conversion import convert_file, zip_conversion
-from .utils.find_files import find_files
-from .utils.get_data import ask_date
-from .utils.tables import files_table
 import concurrent.futures
 import itertools
 import os
-from yaspin import yaspin
-from InquirerPy import inquirer, prompt
+from pathlib import Path
+from typing import Optional
+from . import files_table, ask_date, find_files
 import pyfiglet
+import typer
+from rich.console import Console
+from typing_extensions import Annotated
+from yaspin import yaspin
+from .image_conversion import convert_file, zip_conversion
+from InquirerPy import inquirer, prompt
 
 console = Console()
 app = typer.Typer(no_args_is_help=True)
+
 
 spinner = yaspin()
 
