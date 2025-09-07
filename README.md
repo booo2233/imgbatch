@@ -6,7 +6,7 @@ A lightweight Python tool for batch image conversion and archiving
 ![Linux](https://img.shields.io/badge/Linux-Supported-brightgreen?logo=linux)
 ![macOS](https://img.shields.io/badge/macOS-Supported-brightgreen?logo=apple)
 ![FreeBSD](https://img.shields.io/badge/FreeBSD-Supported-brightgreen?logo=freebsd)
-![Windows](https://img.shields.io/badge/Windows-Untested-lightgrey?logo=windows)
+![Windows](https://img.shields.io/badge/Windows-Supported-brightgreen?logo=windows)
 
 **imgbatch** is a powerful yet simple command-line tool for batch image processing. Convert multiple images between formats, create ZIP archives, and use smart search features to process exactly the files you need.
 
@@ -86,3 +86,4 @@ Contributions are welcome! Feel free to:
 ## 🎉 Acknowledgments
 
 Thanks to all contributors and users of this project!
+
