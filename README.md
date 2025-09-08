@@ -1,6 +1,6 @@
 # imgbatch v1.0
 A lightweight Python tool for batch image conversion and archiving
-
+## python package comeing soon
 ## 🚀 Platform Support
 
 ![Linux](https://img.shields.io/badge/Linux-Supported-brightgreen?logo=linux)
@@ -86,4 +86,5 @@ Contributions are welcome! Feel free to:
 ## 🎉 Acknowledgments
 
 Thanks to all contributors and users of this project!
+
 
