@@ -23,3 +23,7 @@ def files_table(files, input_ext, output_ext, sp_files=False):
         )
 
     return table
+
+
+if __name__ == "__main__":
+    files_table()
