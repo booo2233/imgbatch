@@ -1,6 +1,6 @@
 # imgbatch v1.0
 A lightweight Python tool for batch image conversion and archiving
-## python package comeing soon
+## python package coming soon
 ## 🚀 Platform Support
 
 ![Linux](https://img.shields.io/badge/Linux-Supported-brightgreen?logo=linux)
@@ -45,19 +45,28 @@ Convert all JPG images in current directory to PNG:
 ```bash
 python -m imgbatch convert --input jpg --output png
 ```
+![Basic Conversion](assets/image_convert.png)
 
 ### Create ZIP Archive
 Convert and create a ZIP archive:
 ```bash
 python -m imgbatch zip --input jpg --output png --zipname my_images
 ```
+![zip Archive](assets/zip.png)
 
 ### Smart Search
 Use interactive file selection:
 ```bash
 python -m imgbatch spsearch --input jpg --output png
 ```
+### fzf search
+use the tab key to select images
 
+![fzf search](assets/fzf_search.gif)
+
+### date search
+
+![date search](assets/date_search.gif)
 ### Advanced Options
 - `--directory (-f)`: Specify input directory
 - `--recurse (-r)`: Search in subdirectories
