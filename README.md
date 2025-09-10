@@ -64,9 +64,6 @@ use the tab key to select images
 
 ![fzf search](assets/fzf_search.gif)
 
-### date search
-
-![date search](assets/date_search.gif)
 ### Advanced Options
 - `--directory (-f)`: Specify input directory
 - `--recurse (-r)`: Search in subdirectories
