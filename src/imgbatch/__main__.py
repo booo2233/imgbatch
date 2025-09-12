@@ -31,12 +31,12 @@ def _process_and_convert_files(
     delete: bool,
     spsearch: list = None,
 ):
-    spinner.start()
     if spsearch is None:
         files = find_files(input_format, directory, recurse)
 
     else:
         files = spsearch
+    spinner.start()
     with concurrent.futures.ProcessPoolExecutor(max_workers=os.cpu_count()) as executor:
         results = list(
             executor.map(
@@ -154,7 +154,11 @@ def specificity_search(
     ).execute()
     console.print(f"You picked: [green]{choice}[/green]")
     if choice == "File Search":
-        files = find_files(input_format, directory_path, recurse)
+        try:
+            files = find_files(input_format, directory_path, recurse)
+        except FileNotFoundError as e:
+            console.print(str(e), style="red")
+            raise typer.Exit(code=1)
         questions = [
             {
                 "type": "fuzzy",
@@ -167,7 +171,9 @@ def specificity_search(
         ]
 
         result = prompt(questions)
+
         files = result["files"]
+
     else:
         date = ask_date()
         files = find_files(input_format, directory_path, recurse, date)
