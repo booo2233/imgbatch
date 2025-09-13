@@ -31,7 +31,7 @@ cd imgbatch
 2. Install dependencies:
 ```bash
 pip install -r src/imgbatch/requirements.txt
-cd src/imgbatch
+cd src
 ```
 
 3. Run the tool:
