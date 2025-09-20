@@ -89,7 +89,8 @@ Contributions are welcome! Feel free to:
 - Report bugs
 - Suggest new features
 - Submit pull requests
-
+- Code Formatting
+- Install [`ruff`](https://docs.astral.sh/ruff/editors/) and [`pyright`](https://microsoft.github.io/pyright/#/installation) extensions in your code editor and format the code before committing.
 ## 🎉 Acknowledgments
 
 Thanks to all contributors and users of this project!
