@@ -1,5 +1,4 @@
 from rich.table import Table
-
 from pathlib import Path
 
 
